@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./BlogDetails.css";
 import { BsChevronLeft } from "react-icons/bs";
+import { useNavigate, useParams } from "react-router-dom";
 
 const BlogDetails = () => {
+const { id } = useParams()
+const navigate = useNavigate()
+const [blog, setBlog] = useState({})
+
+useEffect(()=>{
+  fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
+  .then(res => res.json())
+  .then(data => setBlog(data))
+},[id])
+
   return (
     <>
       <div className='header-gradient' />
 
-      {/* <div>
-        <button className='back-button'>
+      <div>
+        <button onClick={()=> navigate(-1)} className='back-button'>
           <BsChevronLeft />
           <p>Back</p>
         </button>
@@ -20,7 +31,7 @@ const BlogDetails = () => {
           <h1>{blog?.title}</h1>
           <p>{blog?.blog}</p>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

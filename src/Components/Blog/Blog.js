@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Blog = ({ blog }) => {
   const navigate = useNavigate();
-  const { imageURL, title, blog: blogBody, admin, _id } = blog;
+  const { imageURL, title, blog: blogBody, admin, id } = blog;
   return (
     <div className='blog-container'>
       <div className='blog-image-container'>
@@ -21,7 +21,7 @@ const Blog = ({ blog }) => {
         </div>
         <p className='blog-preview'>
           {blogBody.length < 400 ? blogBody.length : blogBody.slice(0, 400)}
-          <span className='read-more' onClick={() => navigate(`/blog/${_id}`)}>
+          <span className='read-more' onClick={() => navigate(`/blog/${id}`)}>
             ...Read More
           </span>
         </p>
