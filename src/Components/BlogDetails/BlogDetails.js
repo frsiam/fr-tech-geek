@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./BlogDetails.css";
 import { BsChevronLeft } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
+import { BlogContext } from "../../App";
 
 const BlogDetails = () => {
 const { id } = useParams()
 const navigate = useNavigate()
-const [blog, setBlog] = useState({})
+// const [blog, setBlog] = useState({})
+const [blogs] = useContext(BlogContext)
 
-useEffect(()=>{
-  fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
-  .then(res => res.json())
-  .then(data => setBlog(data))
-},[id])
+const blog = blogs.find(blog => blog.id === id)
+
+// useEffect(()=>{
+//   fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
+//   .then(res => res.json())
+//   .then(data => setBlog(data))
+// },[id])
 
   return (
     <>
